@@ -3,8 +3,7 @@
 Picker View is a special kind of input component that looks like an old cash-register
 where multiple wheels have digits written on them, and rotates as you make a selection.
 
-Examples of picker views:
-goo.gl/6izqrZ
+Checkout the (examples of picker views)[https://goo.gl/6izqrZ]
 
 # Installation
 
