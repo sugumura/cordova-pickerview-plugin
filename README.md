@@ -5,6 +5,10 @@ where multiple wheels have digits written on them, and rotates as you make a sel
 
 Checkout the [examples of picker views](https://goo.gl/6izqrZ).
 
+# Compatibility
+
+Currently, only works with ios.
+
 # Installation
 
 Use the following command to install the plugin.
