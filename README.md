@@ -27,7 +27,7 @@ var config = [
     width: 200
   },
   {
-    options:["1oz","2oz","3oz","4oz","5oz","6oz","7oz","8oz"]
+    options:["1oz","2oz","3oz","4oz","5oz","6oz","7oz","8oz"],
     default:["1oz"],
     width: 100
   }
