@@ -14,8 +14,8 @@ Currently, only works with ios.
 Use the following command to install the plugin.
 
 ```bash
-$ git clone http://github.com/panda4126/cordova-pickerview-plugin.git
-$ cordova plugin add /path/to/cordova-pickerview-plugin
+$ git clone http://github.com/panda4126/cordova-pickerview-plugin.git ../cordova-pickerview-plugin
+$ cordova plugin add ../cordova-pickerview-plugin
 ```
 
 # Usage
