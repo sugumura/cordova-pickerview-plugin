@@ -15,22 +15,22 @@
 {
     UIView* view = self.webView.superview;
     maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height)];
-    [maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
-    
+    [maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2]];
+
     [view addSubview:maskView];
-    
+
     _providerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - 260, view.bounds.size.width, 44)];
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissActionSheet:)];
     _providerToolbar.items = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], done];
-    _providerToolbar.barStyle = UIBarStyleBlackOpaque;
+    _providerToolbar.translucent = YES;
+    _providerToolbar.barStyle = UIBarStyleDefault;
     [view addSubview:_providerToolbar];
-    
-    _providerPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - 215, 0, 0)];
-    _providerPickerView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
+
+    _providerPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - 215, view.bounds.size.width, 0)];
+    _providerPickerView.backgroundColor = [UIColor colorWithRed:210.0f/255.0f green:213.0f/255.0f blue:219.0f/255.0f alpha:1.0];
     _providerPickerView.showsSelectionIndicator = YES;
-    // _providerPickerView.dataSource = self;
     _providerPickerView.delegate = self;
-    
+
     for (int i = 0; i < [options count]; i++) {
         NSDictionary* obj = [options objectAtIndex:i];
         NSObject* defaultIndex = [obj objectForKey:@"defaultIndex"];
@@ -40,7 +40,7 @@
         }
         [values addObject:[obj objectForKey:@"default"]];
     }
-    
+
     [UIView transitionWithView:view
                       duration:0.5
                        options:UIViewAnimationOptionBeginFromCurrentState
@@ -52,13 +52,13 @@
 {
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:values];
     [self.commandDelegate sendPluginResult:result callbackId:callbackId];
-    
+
     [maskView removeFromSuperview];
     [_providerPickerView removeFromSuperview];
     [_providerToolbar removeFromSuperview];
 }
 
-- (void)pickerView:(UIPickerView*)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component 
+- (void)pickerView:(UIPickerView*)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component
 {
     NSDictionary* data = [options objectAtIndex:component];
     NSArray* opts = [data objectForKey:@"options"];
@@ -66,19 +66,19 @@
     [values setObject:selected atIndexedSubscript:component];
 }
 
-- (NSInteger)pickerView:(UIPickerView*)pickerView numberOfRowsInComponent:(NSInteger)component 
+- (NSInteger)pickerView:(UIPickerView*)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     NSDictionary* object = [options objectAtIndex:component];
     NSArray* opts = [object objectForKey:@"options"];
     return [opts count];
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView 
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView
 {
     return [options count];
 }
 
-- (NSString*)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component 
+- (NSString*)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSDictionary* object = [options objectAtIndex:component];
     NSArray* opts = [object objectForKey:@"options"];
@@ -86,7 +86,7 @@
     return title;
 }
 
-- (CGFloat)pickerView:(UIPickerView*)pickerView widthForComponent:(NSInteger)component 
+- (CGFloat)pickerView:(UIPickerView*)pickerView widthForComponent:(NSInteger)component
 {
     NSDictionary* object = [options objectAtIndex:component];
     NSString* width = [object objectForKey:@"width"];
@@ -94,4 +94,3 @@
 }
 
 @end
-
