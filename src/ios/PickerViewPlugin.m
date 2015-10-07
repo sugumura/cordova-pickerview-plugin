@@ -21,7 +21,9 @@
 
     _providerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - 260, view.bounds.size.width, 44)];
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissActionSheet:)];
-    _providerToolbar.items = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], done];
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActionSheet:)];
+    
+    _providerToolbar.items = @[cancel, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], done];
     _providerToolbar.translucent = YES;
     _providerToolbar.barStyle = UIBarStyleDefault;
     [view addSubview:_providerToolbar];
@@ -53,6 +55,13 @@
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:values];
     [self.commandDelegate sendPluginResult:result callbackId:callbackId];
 
+    [maskView removeFromSuperview];
+    [_providerPickerView removeFromSuperview];
+    [_providerToolbar removeFromSuperview];
+}
+
+- (void)cancelActionSheet:(id)sender
+{
     [maskView removeFromSuperview];
     [_providerPickerView removeFromSuperview];
     [_providerToolbar removeFromSuperview];
