@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "com.apcandsons.cordova.pickerview",
+    "cordova_name": "cordova-pickerview-plugin",
+    "description": "Enables you to add the IOS picker-view input",
+    "keywords": [
+        "cordova",
+        "picker"
+    ],
+    "engines": []
+}
